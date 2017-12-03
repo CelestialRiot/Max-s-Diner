@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Max's Diner</title>
+		<meta name = "format-detection" content = "telephone=no">
+		<style>
+		@font-face {
+	    font-family: "Komika Axis";
+	    font-style: normal;
+	    font-weight: normal;
+	    src: local("Komika Axis"), url("KOMIKAX_.woff") format("woff");
+		}
+		body {
+		  	background-image: url("Background.png");
+		    background-color: #FB5B0B;
+		    font-family: verdana, arial, sans-serif;
+		    text-align: center;
+		    color: black;
+		}
+		a {
+		    color: whitesmoke;
+		    text-decoration: none;
+		} a:hover {color: #33F0D9;}
+		#bar {
+		    background-color: #FB5B0B;
+		    position: fixed;
+		    margin: -0.5em 0em 0em -1em;
+		    padding-right: 100%;
+		    border: 3px solid whitesmoke;
+		    border-top: none;
+		    font-size: 1em;
+		    letter-spacing: 1px;
+		    display: flex;
+		    z-index: 2;
+		}
+		.bar_button {
+			margin-left: 50px;
+			position: relative;
+			left: 100px;
+		}
+		#cover_image {
+	    	width: 101%;
+	    	margin: 40px -20px 0px -20px;
+		}
+		#cover_title {
+	    	font-family: "Komika Axis", Verdana, serif;
+	    	font-size: 6em;
+	    	color: #EB5B0B;
+	    	letter-spacing: 4px;
+	    	text-shadow: 2.25px 2.25px #ff0000;
+	    	position: absolute;
+	    	top: 1.76em;
+	    	left: 0; right: 0;
+		}
+		.IMG {
+			border: 3px solid whitesmoke;
+	    	border-radius: 360px;
+		}
+		#about {
+		    font-weight: lighter;
+		    font-size: 1.2em;
+		    margin-top: 50px;
+		    display: flex;
+		}
+		.about_sect {
+		    width: 33%;
+		    border: 3px solid black;
+		    border-radius: 50px;
+		    padding: 30px 10px 10px 10px;
+		    margin: 0px 10px;
+		    background-color: white;
+		}
+		.subheading {
+			font-family: "Komika Axis", Verdana, serif;
+			font-size: 90px;
+			letter-spacing: 3px;
+		}
+		#menu {
+			background-color: white;
+			height: 850px;
+		}
+		.expand {
+			position: relative;
+			top: 120px; right: 0; left: 0;
+		}
+		#menu_expand {
+			padding: 100px 25% 215px 25%;
+			background-color: rgba(240,240,240,0.75);
+			border: 10px solid rgba(240,240,240,0.5);
+			border-radius: 10px;
+			font-size: 25px;
+			font-weight: bold;
+			color: rgba(25,25,25,0.5);
+		}
+		#all_days {
+			width: 100%;
+
+			display: flex;
+		}
+		.days {
+			font-size: 25px;
+			width: 20%;
+			height: 80px;
+			border-radius: 10px;
+			margin: 0 2.5px 30px 2.5px;
+			background: #33F0D9;
+			overflow: hidden;
+			cursor: pointer;
+			z-index: 1;
+		}
+    .days ul {
+      margin-top: 12px;
+      margin-bottom: 30px;
+    }
+    .days li {
+      list-style: none;
+      padding-top: 5px;
+      padding-bottom: 6px;
+      margin: 1px 10.5% 7px 2%;
+      border-radius: 50px;
+      background-color: rgba(230,240,245,0.8);
+    }
+		.days:hover {
+			background-color: #FB5B0B !important;
+			padding: 3px;
+		}
+		.buttons {
+			font-size: 100%;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			line-height: 2.8;
+		}
+		#breakfast {
+			background-color: white;
+	    	width: 100%;
+	    	margin: 75px 0px;
+	    	padding-top: 1px;
+	    }
+	    #breakfast_sect {
+	    	display: flex;
+	    	margin-bottom: 50px;
+	    	padding-bottom: 50px;
+	    }
+	    #breakfast_left div, #breakfast_right div {
+	    	width: 75%;
+	    	height: 220px;
+	    	margin: 10px auto 10px auto;
+	    	padding: 20px;
+	    	padding-bottom: 0;
+	    	background-color: rgba(230,230,230,0.25);
+	    	border-radius: 5px;
+	    }
+	    #breakfast h6 {
+	    	margin-top: 0px;
+	    	font-size: 150%;
+	    }
+	    #breakfast p {
+	    	margin-top: -45px;
+	    	font-size: 22px;
+	    	line-height: 28px;
+	    }
+	    .price {
+	    	font-style: italic;
+	    	font-weight: 600;
+	    	position: relative;
+	    	top: 12px;
+	    }
+		#contact {
+		    padding-top: 10px;
+		    background-color: white;
+		}
+		#container {
+			width: 100%;
+			margin-top: -50px;
+			margin-bottom: 50px;
+			display: inline-flex;
+		}
+		.title {
+			font-size: 45px;
+			line-height: 0;
+		}
+		#map {
+	  		height: 350px;
+	  		width: 350px;
+	  		overflow: hidden;
+	  		border: 2px dashed black;
+	  		border-radius: 50px;
+	  		margin: -25px auto 0px auto;
+	  		z-index: 1;
+		}
+		.detail {
+			font-size: 30px;
+		}
+		#location, #connect {
+			width: 50%;
+		}
+		.contact_sect {
+			margin-top: 20%;
+		}
+		#phone {
+			font-style: italic;
+			color: #FB5B0B;
+			text-decoration: underline;
+		}
+		#hours {
+			background-color: white;
+			margin-top: 75px;
+			padding-top: 7px;
+			padding-bottom: 80px;
+		}
+		table {
+		    font-size: 26px;
+		    text-align: right;
+		    position: relative;
+		    right: 50px;
+		    width: 85%;
+		}
+		td {
+			padding: 30px 12px 10px 150px;
+		}
+		.number {
+			font-weight: bold;
+		}
+
+		</style>
+	</head>
+	<body>
+		<!-- Fixed Bar -->
+		<div id="bar">
+			<p class="bar_button" style="width: 9.5em"><a href="#menu">Scheduled Menu</a></p>
+			<p class="bar_button" style="width: 9em"><a href="#breakfast">Breakfast Menu</a></p>
+			<p class="bar_button" style="width: 4.5em"><a href="#contact">Contact</a></p>
+			<p class="bar_button" style="width: 3.5em"><a href="#hours">Hours</a></p>
+		</div>
+
+		<!-- Main Heading -->
+		<img src="CoverPhoto.png" alt="header" id="cover_image">
+		<h1 id="cover_title">Max's Diner</h1>
+
+		<!-- Heading #2 'About' -->
+		<div id="about">
+			<div class="about_sect">
+				<img src="IMG1.png" alt="image" width="250" class="IMG">
+				<h3>Eat In</h3>
+				<p>Rejuvenate yourself after a hard day's work and drop by for a freshly cooked meal!</p>
+			</div>
+			<div class="about_sect">
+				<img src="IMG2.png" alt="image" width="250" class="IMG">
+				<h3>Takeaway</h3>
+				<p>Grab a succulent sandwich to keep you going sturdy on the job!</p>
+			</div>
+			<div class="about_sect">
+				<img src="IMG3.png" alt="image" width="250" class="IMG">
+				<h3>Catering</h3>
+				<p>Order a large variety of food for delivery to sustain your functions!</p>
+			</div>
+		</div>
+
+		<!-- Heading #3 'Menu' -->
+		<div id="menu">
+			<h2 class="subheading">Menu</h2>
+
+			<!-- begins daily split here -->
+			<div id="all_days">
+				<div class="days" id="monday" onclick="mondayFunction()">
+					<h6 class="buttons">Monday</h6>
+					<ul>
+						<li>Lasagne</li>
+						<li>Steam Vegetables</li>
+						<li>Fried Rice</li>
+						<li>Roast Beef</li>
+						<li>Roast Pork</li>
+						<li>Sweet Pepper Chicken</li>
+						<li>Sheppard Pie</li>
+						<li>Ravioli Carbonara</li>
+						<li>Scallop Potato</li>
+						<li>Plum Chicken Stir Fry</li>
+						<li>Beef Stroganof</li>
+					</ul>
+				</div>
+				<div class="days"  id="tuesday" onclick="tuesdayFunction()">
+					<h6 class="buttons">Tuesday</h6>
+					<ul>
+						<li>Lasagne</li>
+						<li>Steam Vegetables</li>
+						<li>Fried Rice</li>
+						<li>Roast Beef</li>
+						<li>Roast Pork</li>
+						<li>Sweet Pepper Chicken</li>
+						<li>Sheppard Pie</li>
+						<li>Pollo Fungi Pasta</li>
+						<li>Mashed Potato</li>
+						<li>Beef Black Bean Stir Fry</li>
+						<li>Butter Chicken</li>
+					</ul>
+				</div>
+				<div class="days" id="wednesday" onclick="wednesdayFunction()">
+					<h6 class="buttons">Wednesday</h6>
+					<ul>
+						<li>Lasagne</li>
+						<li>Steam Vegetables</li>
+						<li>Fried Rice</li>
+						<li>Roast Beef</li>
+						<li>Roast Pork</li>
+						<li>Sweet Pepper Chicken</li>
+						<li>Chicken Noodle</li>
+						<li>Ravioli Carbonara</li>
+						<li>Chicken Seed Mustard</li>
+						<li>Roast Pumpkin & Potato</li>
+						<li>Beef Rissole</li>
+						<li>Beef Teriyaki</li>
+					</ul>
+				</div>
+				<div class="days" id="thursday" onclick="thursdayFunction()">
+					<h6 class="buttons">Thursday</h6>
+					<ul>
+						<li>Lasagne</li>
+						<li>Steam Vegetables</li>
+						<li>Fried Rice</li>
+						<li>Roast Beef</li>
+						<li>Roast Pork</li>
+						<li>Sweet Pepper Chicken</li>
+						<li>Sheppard Pie</li>
+						<li>Beef Casserole</li>
+						<li>Lemon Chicken</li>
+						<li>Tortellini Carbonara</li>
+						<li>Creamy Baked Potato</li>
+						<li>Penne Bolognaise</li>
+					</ul>
+				</div>
+				<div class="days" id="friday" onclick="fridayFunction()">
+					<h6 class="buttons">Friday</h6>
+					<ul>
+						<li>Lasagne</li>
+						<li>Steam Vegetables</li>
+						<li>Fried Rice</li>
+						<li>Roast Beef</li>
+						<li>Roast Pork</li>
+						<li>BBQ Chicken</li>
+						<li>Sheppard Pie</li>
+						<li>Ravioli Carbonara</li>
+						<li>Mashed Potato</li>
+						<li>Pepper Steak Casserole</li>
+						<li>Thai Beef Stir Fry</li>
+						<li>Penne Bolognaise</li>
+					</ul>
+				</div>
+			</div>
+			<p class="expand"><span id="menu_expand">Click a Day to View</span></p>
+		</div>
+
+		<!-- Scripts for buttons -->
+		<script>
+				var monday = document.getElementById("monday");
+				var tuesday = document.getElementById("tuesday");
+				var wednesday = document.getElementById("wednesday");
+				var thursday = document.getElementById("thursday");
+				var friday = document.getElementById("friday");
+				var tab = document.getElementById("menu_expand");
+        var container = document.getElementById("menu");
+				var clicked = "transparent";
+				var on = "75px";
+				var off = "100%";
+				var sml = "20%";
+				var lrg = "40%";
+				var no = "rgba(150,150,150,0.5)"
+        var open = "100%";
+        var close = "650px";
+
+				function mondayFunction() {
+	    			if (monday.style.height === (off)) {
+	    				monday.style.height = (on); monday.style.background = (no); monday.style.width = (sml); menu.style.height = (close);
+	    			} else {
+	    				tab.style.background = (clicked); tab.style.border = (clicked); tab.style.color = (clicked);
+	    				monday.style.height = (off); monday.style.background = (no); monday.style.width = (lrg);
+	    				tuesday.style.height = (on); tuesday.style.background = (no); tuesday.style.width = (sml);
+	    				wednesday.style.height = (on); wednesday.style.background = (no); wednesday.style.width = (sml);
+	    				thursday.style.height = (on); thursday.style.background = (no); thursday.style.width = (sml);
+	    				friday.style.height = (on); friday.style.background = (no); friday.style.width = (sml); menu.style.height = (open);
+	    			}
+	    		}
+				function tuesdayFunction() {
+	    			if (tuesday.style.height === (off)) {
+	    				tuesday.style.height = (on); tuesday.style.background = (no); tuesday.style.width = (sml); menu.style.height = (close);
+	    			} else {
+	    				tab.style.background = (clicked); tab.style.border = (clicked); tab.style.color = (clicked);
+	    				monday.style.height = (on); monday.style.background = (no); monday.style.width = (sml);
+	    				tuesday.style.height = (off); tuesday.style.background = (no); tuesday.style.width = (lrg);
+	    				wednesday.style.height = (on); wednesday.style.background = (no); wednesday.style.width = (sml);
+	    				thursday.style.height = (on); thursday.style.background = (no); thursday.style.width = (sml);
+	    				friday.style.height = (on); friday.style.background = (no); friday.style.width = (sml); menu.style.height = (open);
+	    			}
+	    		}
+				function wednesdayFunction() {
+	    			if (wednesday.style.height === (off)) {
+	    				wednesday.style.height = (on); wednesday.style.background = (no); wednesday.style.width = (sml); menu.style.height = (close);
+	    			} else {
+	    				tab.style.background = (clicked); tab.style.border = (clicked); tab.style.color = (clicked);
+	    				monday.style.height = (on); monday.style.background = (no); monday.style.width = (sml);
+	    				tuesday.style.height = (on); tuesday.style.background = (no); tuesday.style.width = (sml);
+	    				wednesday.style.height = (off); wednesday.style.background = (no); wednesday.style.width = (lrg);
+	    				thursday.style.height = (on); thursday.style.background = (no); thursday.style.width = (sml);
+	    				friday.style.height = (on); friday.style.background = (no); friday.style.width = (sml); menu.style.height = (open);
+	    			}
+	    		}
+				function thursdayFunction() {
+	    			if (thursday.style.height === (off)) {
+	    				thursday.style.height = (on); thursday.style.background = (no); thursday.style.width = (sml); menu.style.height = (close);
+	    			} else {
+	    				tab.style.background = (clicked); tab.style.border = (clicked); tab.style.color = (clicked);
+	    				monday.style.height = (on); monday.style.background = (no); monday.style.width = (sml);
+	    				tuesday.style.height = (on); tuesday.style.background = (no); tuesday.style.width = (sml);
+	    				wednesday.style.height = (on); wednesday.style.background = (no); wednesday.style.width = (sml);
+	    				thursday.style.height = (off); thursday.style.background = (no); thursday.style.width = (lrg);
+	    				friday.style.height = (on); friday.style.background = (no); friday.style.width = (sml); menu.style.height = (open);
+	    			}
+	    		}
+				function fridayFunction() {
+	    			if (friday.style.height === (off)) {
+	    				friday.style.height = (on); friday.style.background = (no); friday.style.width = (sml); menu.style.height = (close);
+	    			} else {
+	    				tab.style.background = (clicked); tab.style.border = (clicked); tab.style.color = (clicked);
+	    				monday.style.height = (on); monday.style.background = (no); monday.style.width = (sml);
+	    				tuesday.style.height = (on); tuesday.style.background = (no); tuesday.style.width = (sml);
+	    				wednesday.style.height = (on); wednesday.style.background = (no); wednesday.style.width = (sml);
+	    				thursday.style.height = (on); thursday.style.background = (no); thursday.style.width = (sml);
+	    				friday.style.height = (off); friday.style.background = (no); friday.style.width = (lrg); menu.style.height = (open);
+	    			}
+	    		}
+			</script>
+
+		<!-- Breakfast png -->
+		<div id="breakfast">
+			<h2 class="subheading">Breakfast Menu</h2>
+			<div id="breakfast_sect">
+				<!-- Left Side -->
+				<div id="breakfast_left">
+					<div>
+						<h6>Small Breakfast</h6>
+						<p>2 eggs on 2 toast with bacon<br><span class="price">$5.90</span></p>
+					</div>
+					<div>
+						<h6>Big Breakfast</h6>
+						<p>2 fried eggs on 2 toast with bacon, baked beans, chips and grilled tomoto<br><span class="price">$6.90</span></p>
+					</div>
+					<div>
+						<h6>Trucker's Breakfast</h6>
+						<p>2 fried eggs on 2 toast with bacon, sausage, hash brown, baked beans, and grilled tomato<br><span class="price">$10.90</span></p>
+					</div>
+					<div>
+						<h6>Mix Grill</h6>
+						<p>2 fried eggs on 2 toast with scotch fillet steak, sausage, bacon, chips and grilled tomato<br><span class="price">$16.90</span></p>
+					</div>
+				</div>
+				<!-- Right Side -->
+				<div id="breakfast_right">
+					<div>
+						<h6>Eggs Benedict</h6>
+						<p>2 poached eggs with English muffin, ham, spinach and hollandaise sauce<br><span class="price">$12.90</span></p>
+					</div>
+					<div>
+						<h6>Omelette</h6>
+						<p>Ham, cheese and sliced tomato served with 2 toast<br><span class="price">$9.90</span></p>
+					</div>
+					<div>
+						<h6>Eggs & Beans</h6>
+						<p>3 scrambled eggs on 2 toast served with baked beans<br><span class="price">$7.90</span></p>
+					</div>
+					<div>
+						<h6>Extras</h6>
+						<p>sausage | egg | hash brown | tomato | ham | mushroom | beans | bacon | avocado | chips | salmon<br><span class="price">$1.50 ~ $4.00</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Heading #3 'Contact' -->
+		<div id="contact">
+			<h2 class="subheading">Contact</h2>
+			<div id="container">
+				<!-- Left Side -->
+				<div id="location">
+					<h6 class="title">Location</h6>
+					<div id="map"></div>
+					<script>
+						function initMap() {
+						var location = {lat: -37.813827, lng: 144.785889};
+						var map = new google.maps.Map(document.getElementById("map"), {
+							zoom: 15,
+							center: location
+						});
+						var marker = new google.maps.Marker({
+							position: location,
+							map: map
+						});
+						}
+					</script>
+					<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzKC5zcfjRslXbOeXWfDA-Tg6th7uuXCU&callback=initMap"></script>
+					<p class="detail">13/227-231 Fitzgerald Rd<br>Laverton North VIC 3026</p>
+				</div>
+				<!-- Right Side -->
+				<div id="connect">
+					<div class="contact_sect">
+						<h6 class="title">Phone</h6>
+						<p class="detail"><a href="tel:03 9931 0231" id="phone">03 9931 0231</a></p>
+					</div>
+					<div class="contact_sect">
+						<h6 class="title">E-mail</h6>
+						<p class="detail" id="email">maxsdiner@gmail.com</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Hours -->
+		<div id="hours">
+			<h6 class="title">Business Hours</h6>
+			<table>
+				<tr>
+					<td>Monday</td>
+					<td class="number">5am</td>
+					<td>to</td>
+					<td class="number">3pm</td>
+				</tr>
+				<tr>
+					<td>Tuesday</td>
+					<td class="number">5am</td>
+					<td>to</td>
+					<td class="number">3pm</td>
+				</tr>
+				<tr>
+					<td>Wednesday</td>
+					<td class="number">5am</td>
+					<td>to</td>
+					<td class="number">3pm</td>
+				</tr>
+				<tr>
+					<td>Thursday</td>
+					<td class="number">5am</td>
+					<td>to</td>
+					<td class="number">3pm</td>
+				</tr>
+				<tr>
+					<td>Friday</td>
+					<td class="number">5am</td>
+					<td>to</td>
+					<td class="number">3pm</td>
+				</tr>
+				<tr>
+					<td>Saturday</td>
+					<td></td>
+					<td></td>
+					<td class="number">closed</td>
+				</tr>
+				<tr>
+					<td>Sunday</td>
+					<td></td>
+					<td></td>
+					<td class="number">closed</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
