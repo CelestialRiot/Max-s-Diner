@@ -1,2 +1,3 @@
-# Max-s-Diner
-Some website
+# Max's Diner
+Some website @
+maxsdiner.com.au
